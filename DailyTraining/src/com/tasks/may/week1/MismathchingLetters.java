@@ -1,4 +1,4 @@
-package com.tasks.may.day2;
+package com.tasks.may.week1;
 
 public class MismathchingLetters {
 

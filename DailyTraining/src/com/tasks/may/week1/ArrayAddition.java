@@ -1,4 +1,4 @@
-package com.tasks.may.day5;
+package com.tasks.may.week1;
 
 //input : a[] = { 3, 5, 2, 10 }
 //output: Sum of array : 20
