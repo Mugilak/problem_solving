@@ -22,30 +22,43 @@ public class AlphabetsSeries {
 		findNumber(s);
 		System.out.println("Enter num : ");
 		int num = input.nextInt();
-		String ans = findSequence(num);
+		System.out.println(findSequence(num)); // by loop
+		String ans = findSequence(1, num); // by recursion
 		System.out.println(ans);
+	}
+
+	public String findSequence(int num) {
+		int rem = 0;
+		String answer = "";
+		while (num > 0) {
+			rem = (num - 1) % 26;
+			answer = ((char) (rem + 65)) + answer;
+			num = (num - 1) / 26;
+		}
+		return answer == "" ? "Invalid" : answer;
 	}
 
 	private void findNumber(String s) {
 		long number = 0, k = 0;
 		for (int i = s.length() - 1; i >= 0; i--) {
-			number += ((s.charAt(i) - 96) * (long) Math.pow(26, k));
+			int value = (s.charAt(i) - 96);
+			number += (value * (long) Math.pow(26, k));
 			k++;
 		}
 		System.out.println(number);
 	}
 
-	private String findSequence(int num) {
+	private String findSequence(int i, int num) {
 		if (num <= 0) {
 			return "Invalid";
 		}
 		if (num <= 26) {
 			return ((char) ((num) + 96)) + "";
 		}
-		if (num % 26 == 0)
-			return findSequence(--num / 26) + 'z' + "";
+		if (num % 26 * i == 0)
+			return findSequence(i, --num / 26) + 'z' + "";
 		else
-			return findSequence(--num / 26) + ((char) ((++num % 26) + 96)) + "";
+			return findSequence(++i, --num / 26) + ((char) ((++num % 26) + 96)) + "";
 	}
 
 }

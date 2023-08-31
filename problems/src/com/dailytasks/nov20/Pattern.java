@@ -20,10 +20,10 @@ public class Pattern {
 		for (int i = 1; i <= n; i++) {
 			value += i;
 			for (int space = 1; space <= n - i; space++) {
-				System.out.print(" ");
+				System.out.printf("%2s"," ");
 			}
 			for (int j = (n - i) + 1; j <= n; j++) {
-				System.out.print(value-- + " ");
+				System.out.printf("%4d",value--);
 			}
 			preValue = value + (n-1);
 			value += i;
@@ -31,10 +31,10 @@ public class Pattern {
 		}preValue = value;
 		for (int i = 1; i <= n; i++) {
 			for (int space = 1; space < i; space++) {
-				System.out.print(" ");
+				System.out.printf("%2s"," ");
 			}
 			for (int j = i; j <= n ; j++) {
-				System.out.print(value-- + " ");
+				System.out.printf("%4d",value-- );
 			}
 			System.out.println();
 		}

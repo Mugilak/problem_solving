@@ -46,12 +46,12 @@ public class SortDate {
 				if (dates[j][2] < dates[min][2]) {
 					min = j;
 				} else if (dates[j][2] == dates[min][2]) {
-					for (int k = 0; k < length; k++) {
+					for (int k = min + 1; k < length; k++) {
 						if (dates[min][2] == dates[k][2]) {
 							if (dates[k][1] < dates[min][1])
 								min = k;
 							else if ((dates[k][1] == dates[min][1])) {
-								for (int m = 0; m < length; m++) {
+								for (int m = min + 1; m < length; m++) {
 									if (dates[min][1] == dates[m][1]) {
 										if (dates[m][0] < dates[min][0])
 											min = m;
@@ -82,26 +82,26 @@ public class SortDate {
 
 	private void split(char[] date, int i) {
 		isFound = false;
-		int len = getLength(date), k = 0;
+		int len = getLength(date), type = 0;
 		int num = 0;
 		for (int j = 0; j < len; j++) {
 			if (date[j] == '/') {
-				if (!(isValid(num, k, i))) {
+				if (!(isValid(num, type, i))) {
 					isFound = true;
 					return;
 				}
-				addAt(num, k, i);
-				k++;
+				addAt(num, type, i);
+				type++;
 				num = 0;
 			} else
 				num = (num * 10) + ((int) (date[j] - '0'));
 		}
-		addAt(num, k, i);
+		addAt(num, type, i);
 	}
 
-	private boolean isValid(int num, int k, int i) {
+	private boolean isValid(int num, int type, int i) {
 		int date, mon;
-		switch (k) {
+		switch (type) {
 		case 0:
 			if (num < 1 || num > 31) {
 				return false;
@@ -111,7 +111,7 @@ public class SortDate {
 			if (num < 1 || num > 12) {
 				return false;
 			}
-			date = dates[i][k - 1];
+			date = dates[i][type - 1];
 			if (num == 4 || num == 6 || num == 9 || num == 11) {
 				if (date < 1 || date > 30) {
 					return false;
@@ -123,18 +123,18 @@ public class SortDate {
 			}
 			break;
 		case 2:
-			if (num < 0 && num > 10000) {
+			if (num < 0 && num > 2023) {
 				return false;
 			}
-			date = dates[i][k - 2];
-			mon = dates[i][k - 1];
+			date = dates[i][type - 2];
+			mon = dates[i][type - 1];
 			if ((num % 100 == 0 && num % 400 == 0) || num % 4 == 0) {
 				if (mon == 2) {
 					if (date < 1 || date > 29) {
 						return false;
 					}
 				}
-			}else {
+			} else {
 				if (mon == 2) {
 					if (date < 1 || date > 28) {
 						return false;

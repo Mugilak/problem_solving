@@ -26,7 +26,7 @@ public class AlphabetsCombination {
 			return;
 		}
 		int val = 0;
-		for (int i = index; i <= ((n - 1) < (index + 1) ? (n - 1) : (index + 1)); i++) {
+		for (int i = index; i <= n-1; i++) {
 			val = (val * 10) + (int) (array[i] - '0');
 			if (val > 0 && val <= 26) {
 				findSubSequences(array, i + 1, ans + (char) (val + 64));
@@ -35,3 +35,4 @@ public class AlphabetsCombination {
 	}
 
 }
+// i <= ((n - 1) < (index + 1) ? (n - 1) : (index + 1))

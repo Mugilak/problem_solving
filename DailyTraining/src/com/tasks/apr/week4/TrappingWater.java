@@ -15,8 +15,8 @@ public class TrappingWater {
 	}
 
 	private void getInput() {
-//		int input[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
-		int input[] = { 4, 2, 0, 3, 2, 5 };
+		int input[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+//		int input[] = { 4, 2, 0, 3, 2, 5 };
 		findTrappedWater(input);
 	}
 
@@ -25,7 +25,7 @@ public class TrappingWater {
 		while (start < last) {
 			sMax = (sMax < input[start]) ? input[start] : sMax;
 			lMax = (lMax < input[last]) ? input[last] : lMax;
-			if (sMax < lMax) {
+			if (sMax <= lMax) {
 				trappedWater += (sMax - input[start]);
 				start++;
 			} else {

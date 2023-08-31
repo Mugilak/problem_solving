@@ -29,9 +29,9 @@ public class NextImmediatePalindrome {
 			System.out.println("11");
 		} else {
 			if (n % 2 == 0) {
-				evenLengthed(num, n, n / 2 - 1);
+				parse(num, n, n / 2 - 1);
 			} else {
-				evenLengthed(num, n, n / 2);
+				parse(num, n, n / 2);
 			}
 			printArray(num);
 		}
@@ -43,7 +43,7 @@ public class NextImmediatePalindrome {
 		}
 	}
 
-	private void evenLengthed(int[] num, int n, int mid) {
+	private void parse(int[] num, int n, int mid) {
 		int i = mid;
 		int secondPart = getNumber(mid + 1, n - 1, num);
 		while (i >= 0 && num[i] >= num[mid + 1]) {
@@ -85,16 +85,17 @@ public class NextImmediatePalindrome {
 		int n = num.length;
 		while (end < n && start >= 0) {
 			num[end] = num[start];
+//			num[start] = num[end];
 			end++;
 			start--;
 		}
 	}
 
-	private int getReverseNumber(int i, int mid, int[] num) {
+	private int getReverseNumber(int start, int end, int[] num) {
 		int number = 0;
-		while (mid >= i) {
-			number = (number * 10) + num[mid];
-			mid--;
+		while (end >= start) {
+			number = (number * 10) + num[end];
+			end--;
 		}
 		return number;
 	}
